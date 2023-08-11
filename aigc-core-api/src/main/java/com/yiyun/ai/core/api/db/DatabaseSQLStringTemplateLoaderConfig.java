@@ -16,7 +16,7 @@ import java.util.Map;
 
 @ConfigurationProperties(prefix = "wx.cloud.db.sql")
 public class DatabaseSQLStringTemplateLoaderConfig implements InitializingBean {
-    private final Configuration configuration = new Configuration(Configuration.getVersion());
+    private final Configuration configuration = new Configuration(Configuration.VERSION_2_3_32);
     @Getter
     @Setter
     Map<DataBaseOption, String> templates;

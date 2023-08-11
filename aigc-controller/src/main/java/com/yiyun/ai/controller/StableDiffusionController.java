@@ -13,6 +13,6 @@ public class StableDiffusionController {
 
     @RequestMapping("/generate")
     public String generate() {
-        return "";
+        return "ok";
     }
 }
