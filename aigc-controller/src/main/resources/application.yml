@@ -1,0 +1,27 @@
+server:
+  port: 80
+  tomcat:
+    threads:
+      max: 500
+    uri-encoding: UTF-8
+    basedir: ./tomcat
+    accesslog:
+      pattern: combined
+      enabled: true
+      rename-on-rotate: true
+      request-attributes-enabled: true
+spring:
+  config:
+    import:
+      - classpath:cloud_api.yml
+  application:
+    name: aigc-sd-qc
+  gson:
+    disableHtmlEscaping: true
+  jackson.default-property-inclusion: non_null
+logging:
+  level:
+    root: ERROR
+    org.springframework: INFO
+    com.yiyun: DEBUG
+  config: classpath:logback-converter-local.xml
