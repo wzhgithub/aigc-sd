@@ -22,16 +22,11 @@ import org.springframework.context.annotation.Configuration;
         DatabaseSQLStringTemplateLoaderConfig.class})
 public class CloudApiAutoConfigure {
     @Bean
-    public ApacheHttpClient apacheHttpClient(ApacheClientConfig apacheClientConfig) {
-        return new ApacheHttpClient(apacheClientConfig);
-    }
-
-    @Bean
-    public Feign.Builder feignEngine(ApacheHttpClient apacheHttpClient) {
+    public Feign.Builder feignEngine(ApacheClientConfig apacheClientConfig) {
         return Feign.builder()
                 .decoder(new CustomGsonDecoder())
                 .encoder(new GsonEncoder())
-                .client(apacheHttpClient);
+                .client(new ApacheHttpClient(apacheClientConfig));
     }
 
     @Bean
