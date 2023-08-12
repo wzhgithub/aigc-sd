@@ -13,7 +13,7 @@ COPY . /app/src/
 
 # 执行代码编译命令
 # 自定义settings.xml, 选用国内镜像源以提高下载速度
-RUN mvn -s /app/src/settings.xml -f /app/src/pom.xml install -Dmaven.test.skip=true -Dmaven.repo.local=./.m2
+RUN mvn -s /app/src/settings.xml -f /app/src/pom.xml clean install -Dmaven.test.skip=true -Dmaven.repo.local=./.m2
 RUN mvn -s /app/src/settings.xml -f /app/src/pom.xml package -Dmaven.test.skip=true -Dmaven.repo.local=./.m2
 
 # 选择运行时基础镜像
