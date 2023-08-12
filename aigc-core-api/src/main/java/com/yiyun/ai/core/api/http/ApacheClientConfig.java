@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.time.Duration;
 
 @Data
-@ConfigurationProperties(prefix = "wx.cloud.feign.apache")
+@ConfigurationProperties(prefix = "http.feign.apache")
 public class ApacheClientConfig {
     int maxConnections = 128;
     int maxConnPerRoute = 32;

@@ -21,7 +21,6 @@ import org.springframework.context.annotation.Configuration;
         SDServerlessConfig.class,
         DatabaseSQLStringTemplateLoaderConfig.class})
 public class CloudApiAutoConfigure {
-
     @Bean
     public ApacheHttpClient apacheHttpClient(ApacheClientConfig apacheClientConfig) {
         return new ApacheHttpClient(apacheClientConfig);

@@ -1,10 +1,11 @@
+http:
+  feign:
+    apache:
+      maxConnections: 256
+      maxConnPerRoute: 16
+      requestTimeout: 10s
 wx:
   cloud:
-    feign:
-      apache:
-        maxConnections: 256
-        maxConnPerRoute: 16
-        requestTimeout: 10s
     config:
       host: "https://api.weixin.qq.com"
       clazz: com.yiyun.ai.core.api.business.wx.WXCloudAPI
@@ -12,9 +13,9 @@ wx:
     db:
       sql:
         templates:
-          Query: "db.collection(\"${collection}\").where(${condition}).limit(1).get()"
+          Query: "db.collection(\"${collection}\").where(${condition}).limit(${limit}).get()"
           Update: "db.collection(\"${collection}\").where(${condition}).update(${data})"
 sd:
   config:
-    host: "https://api.weixin.qq.com"
+    host: "xxxx"
     clazz: com.yiyun.ai.core.api.business.sd.SDServerlessAPI
