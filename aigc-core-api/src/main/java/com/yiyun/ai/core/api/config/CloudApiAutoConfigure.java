@@ -9,6 +9,7 @@ import com.yiyun.ai.core.api.http.ApacheClientConfig;
 import com.yiyun.ai.core.api.http.ApacheHttpClient;
 import com.yiyun.ai.core.api.http.CustomGsonDecoder;
 import feign.Feign;
+import feign.Logger;
 import feign.gson.GsonEncoder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +25,7 @@ public class CloudApiAutoConfigure {
     @Bean
     public Feign.Builder feignEngine(ApacheClientConfig apacheClientConfig) {
         return Feign.builder()
+                .logLevel(Logger.Level.FULL)
                 .decoder(new CustomGsonDecoder())
                 .encoder(new GsonEncoder())
                 .client(new ApacheHttpClient(apacheClientConfig));

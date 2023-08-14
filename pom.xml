@@ -26,6 +26,7 @@
         <spring-cloud.version>2021.0.4</spring-cloud.version>
         <spring-boot.version>2.7.14</spring-boot.version>
         <java.version>8</java.version>
+        <feign.version>11.8</feign.version>
     </properties>
     <dependencies>
         <dependency>
@@ -88,6 +89,13 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-bom</artifactId>
+                <version>${feign.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
