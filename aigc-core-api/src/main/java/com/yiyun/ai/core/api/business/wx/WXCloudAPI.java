@@ -11,18 +11,21 @@ import java.net.URI;
 public interface WXCloudAPI {
 
     @RequestLine("POST /tcb/databaseupdate?access_token={access_token}")
+    @Headers("Content-Type: application/json")
     CloudDatabase.UpdateDatabaseResponse updateDatabase(
             CloudDatabase.QueryOrUpdateDatabaseReq request,
             @Param("access_token") String access_token
     );
 
     @RequestLine("POST /tcb/databasequery?access_token={access_token}")
+    @Headers("Content-Type: application/json")
     CloudDatabase.QueryDatabaseResponse queryDatabase(
             CloudDatabase.QueryOrUpdateDatabaseReq request,
             @Param("access_token") String access_token
     );
 
     @RequestLine("POST /tcb/batchdownloadfile?access_token={access_token}")
+    @Headers("Content-Type: application/json")
     CloudFile.CloudFileDownloadResponse batchDownloadFile(
             CloudFile.CloudFileDownloadResponse request,
             @Param("access_token") String access_token
@@ -30,6 +33,7 @@ public interface WXCloudAPI {
 
 
     @RequestLine("POST /tcb/uploadfile?access_token={access_token}")
+    @Headers("Content-Type: application/json")
     CloudFile.CloudUploadFileResponse uploadFileRequest(
             CloudFile.CloudUploadFileReq request,
             @Param("access_token") String access_token

@@ -4,6 +4,7 @@ import com.yiyun.ai.core.api.business.wx.CloudDatabase;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
+import freemarker.template.TemplateExceptionHandler;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.InitializingBean;
@@ -12,6 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Map;
+import java.util.TimeZone;
 
 
 @ConfigurationProperties(prefix = "wx.cloud.db.sql")
@@ -41,6 +43,12 @@ public class DatabaseSQLStringTemplateLoaderConfig implements InitializingBean {
         for (Map.Entry<DataBaseOption, String> entry : templates.entrySet()) {
             stringTemplateLoader.putTemplate(entry.getKey().name(), entry.getValue());
         }
+        configuration.setDefaultEncoding("UTF-8");
+        configuration.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+        configuration.setLogTemplateExceptions(false);
+        configuration.setWrapUncheckedExceptions(true);
+        configuration.setFallbackOnNullLoopVariable(false);
+        configuration.setSQLDateAndTimeTimeZone(TimeZone.getDefault());
         configuration.setTemplateLoader(stringTemplateLoader);
     }
 }
