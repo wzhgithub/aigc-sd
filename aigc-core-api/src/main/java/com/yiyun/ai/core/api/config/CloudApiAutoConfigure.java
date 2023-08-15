@@ -40,6 +40,6 @@ public class CloudApiAutoConfigure {
     @Bean
     public SDServerlessAPI newSDServerlessAPI(Feign.Builder feignEngine,
                                               SDServerlessConfig sdServerlessConfig) {
-        return sdServerlessConfig.newInstance(feignEngine);
+        return sdServerlessConfig.getHttp().newInstance(feignEngine);
     }
 }

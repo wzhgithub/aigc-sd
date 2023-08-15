@@ -7,5 +7,5 @@ public interface SDServerlessAPI {
 
     @RequestLine("POST /sdapi/v1/img2img")
     @Headers("Content-Type: application/json")
-    SDImage2Image.SDImage2ImageResponse image2image(SDImage2Image.SDImage2ImageRequest request);
+    SDImage2ImageStruct.SDImage2ImageResponse image2image(SDImage2ImageStruct.SDImage2ImageRequest request);
 }

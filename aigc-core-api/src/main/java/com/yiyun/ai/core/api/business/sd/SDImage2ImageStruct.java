@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-public class SDImage2Image {
+public class SDImage2ImageStruct {
 
     @NoArgsConstructor
     @Data

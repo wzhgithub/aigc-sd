@@ -17,5 +17,8 @@ wx:
           Update: "db.collection(\"${collection}\").where(${condition}).update(${data})"
 sd:
   config:
-    host: "xxxx"
-    clazz: com.yiyun.ai.core.api.business.sd.SDServerlessAPI
+    ws:
+      url: "ws://localhost:8888/queue/join"
+    http:
+      host: "xxxx"
+      clazz: com.yiyun.ai.core.api.business.sd.SDServerlessAPI
