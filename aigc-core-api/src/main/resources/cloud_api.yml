@@ -7,9 +7,10 @@ http:
 wx:
   cloud:
     config:
+      env: "sxxx"
+      access-token: "xxx"
       host: "https://api.weixin.qq.com"
       clazz: com.yiyun.ai.core.api.business.wx.WXCloudAPI
-      access-token: "xxx"
     db:
       sql:
         templates:

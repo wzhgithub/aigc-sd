@@ -10,4 +10,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "wx.cloud.config")
 public class WXCloudConfig extends AbstractFeignHttpConfig<WXCloudAPI> {
     String accessToken;
+    String env;
 }
