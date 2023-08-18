@@ -41,8 +41,7 @@ public interface WXCloudAPI {
 
 
     /**
-     * 需要将 /cgi-bin/message/custom/send 加入配置白名单
-     *
+     * <a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloudrun/src/development/weixin/callback.html#%E4%BA%8C%E3%80%81%E4%B8%BB%E5%8A%A8%E5%9B%9E%E5%A4%8D">...</a>
      * @param request
      * @return
      */
