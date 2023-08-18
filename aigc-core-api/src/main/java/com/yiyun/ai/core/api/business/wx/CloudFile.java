@@ -32,6 +32,7 @@ public class CloudFile {
         private String token;
         @SerializedName("authorization")
         private String authorization;
+        // 此时可以保存file_id，用于之后对文件进行下载和删除操作
         @SerializedName("file_id")
         private String fileId;
         @SerializedName("cos_file_id")

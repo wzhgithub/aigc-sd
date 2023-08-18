@@ -39,16 +39,22 @@ public interface WXCloudAPI {
             @Param("access_token") String access_token
     );
 
+
+    /**
+     * 需要将 /cgi-bin/message/custom/send 加入配置白名单
+     *
+     * @param request
+     * @return
+     */
+    @RequestLine("POST /cgi-bin/message/custom/send")
+    CloudMessage.MessageResponse sendMessage(CloudMessage.MiniProgramRequestMessage request);
+
     @RequestLine("POST")
-    @Headers({
-            "Content-Type: multipart/form-data",
-            "Signature:{sign}",
-            "x-cos-security-token:{token}",
-            "x-cos-meta-fileid:{file_id}"
-    })
+    @Headers("Content-Type: multipart/form-data")
     Response uploadFileToCos(URI basicUrl,
                              @Param("file") File file,
-                             @Param("sign") String sign,
-                             @Param("token") String token,
-                             @Param("file_id") String fileId);
+                             @Param("key") String key,
+                             @Param("Signature") String sign,
+                             @Param("x-cos-security-token") String token,
+                             @Param("x-cos-meta-fileid") String fileId);
 }
