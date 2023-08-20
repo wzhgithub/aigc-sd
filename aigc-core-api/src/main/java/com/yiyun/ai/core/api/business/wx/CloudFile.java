@@ -1,8 +1,10 @@
 package com.yiyun.ai.core.api.business.wx;
 
 import com.google.gson.annotations.SerializedName;
+import com.yinyun.ai.common.utils.ImageUtil;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
@@ -71,6 +73,7 @@ public class CloudFile {
 
         @NoArgsConstructor
         @Data
+        @Slf4j
         public static class FileListDTO {
             @SerializedName("fileid")
             private String fileid;
@@ -80,6 +83,15 @@ public class CloudFile {
             private Long status;
             @SerializedName("errmsg")
             private String errmsg;
+
+            public String getB64EncodeStr() {
+                try {
+                    return ImageUtil.imageUrlB64Str(downloadUrl);
+                } catch (Exception e) {
+                    log.error("url to image b64 failed f:{}", this, e);
+                    return "";
+                }
+            }
         }
     }
 }

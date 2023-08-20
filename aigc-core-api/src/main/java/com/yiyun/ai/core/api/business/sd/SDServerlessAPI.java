@@ -5,7 +5,11 @@ import feign.RequestLine;
 
 public interface SDServerlessAPI {
 
-    @RequestLine("POST /sdapi/v1/img2img")
+    @RequestLine("POST /release/sdapi/v1/img2img")
     @Headers("Content-Type: application/json")
-    SDImage2ImageStruct.SDImage2ImageResponse image2image(SDImage2ImageStruct.SDImage2ImageRequest request);
+    SDAny2ImageStruct.SDImage2ImageResponse image2image(SDAny2ImageStruct.SDImage2ImageRequest request);
+
+    @RequestLine("POST /release/sdapi/v1/txt2img")
+    @Headers("Content-Type: application/json")
+    SDAny2ImageStruct.SDTxt2ImageResponse text2image(SDAny2ImageStruct.SDTxt2ImageRequest sdTxt2ImageRequest);
 }

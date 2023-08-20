@@ -10,6 +10,14 @@ import java.util.Base64;
 //Class ImageUtil
 public class ImageUtil {
 
+    public static String imageUrlB64Str(String url) throws Exception {
+        File b64 = File.createTempFile("b64", ".tmp");
+        FileUtils.copyURLToFile(new URL(url), b64, 2000, 10 * 1000);
+        byte[] fileContent = FileUtils.readFileToByteArray(b64);
+        //Encode the file content into a Base64 string
+        return Base64.getEncoder().encodeToString(fileContent);
+    }
+
     //Method imageBase64Encode
     public static String imageBase64Encode(String imagePath) throws IOException {
         //Read the file content from the given image path
