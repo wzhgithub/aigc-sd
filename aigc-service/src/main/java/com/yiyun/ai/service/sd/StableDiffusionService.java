@@ -28,7 +28,6 @@ public class StableDiffusionService implements RejectedExecutionHandler {
     private final WXCloudConfig wxCloudConfig;
     private final DatabaseSQLStringTemplateLoaderConfig databaseSQLStringTemplateLoaderConfig;
     private final Gson gson;
-
     private final SDServerlessConfig sdServerlessConfig;
 
     public StableDiffusionService(
@@ -73,7 +72,6 @@ public class StableDiffusionService implements RejectedExecutionHandler {
                     e.setWxCloudConfig(wxCloudConfig);
                     e.setSdServerlessConfig(sdServerlessConfig);
                     e.setDatabaseSQLStringTemplateLoaderConfig(databaseSQLStringTemplateLoaderConfig);
-
                 }).forEach(pool::submit);
     }
 
