@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 public class CloudFile {
@@ -39,6 +41,10 @@ public class CloudFile {
         private String fileId;
         @SerializedName("cos_file_id")
         private String cosFileId;
+
+        public URI newUri() throws URISyntaxException {
+            return new URI(url);
+        }
     }
 
     @NoArgsConstructor

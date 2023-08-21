@@ -6,6 +6,8 @@ http:
       requestTimeout: 10s
 wx:
   cloud:
+    file:
+      prefix: "wx/sd/path/%s/%s"
     config:
       env: "sxxx"
       access-token: "xxx"
@@ -15,8 +17,12 @@ wx:
       sql:
         templates:
           Query: "db.collection(\"${collection}\").where(${condition}).limit(${limit}).get()"
-          Update: "db.collection(\"${collection}\").where(${condition}).update(${data})"
+          Update: "db.collection(\"${collection}\").where(${condition}).update({data:${data}})"
 sd:
+  txt2img:
+    prompt: "xx"
+    sample: "xx"
+    model: "xx"
   config:
     ws:
       url: "ws://localhost:8888/queue/join"

@@ -31,7 +31,8 @@ public class DatabaseSQLStringTemplateLoaderConfig implements InitializingBean {
 
     public CloudDatabase.QueryOrUpdateDatabaseReq newCloudDatabaseReq(
             DataBaseOption option,
-            String env, Map<String, Object> data)
+            String env,
+            Map<String, Object> data)
             throws TemplateException, IOException {
         String query = getTemplate(option.name(), data);
         return new CloudDatabase.QueryOrUpdateDatabaseReq(env, query);

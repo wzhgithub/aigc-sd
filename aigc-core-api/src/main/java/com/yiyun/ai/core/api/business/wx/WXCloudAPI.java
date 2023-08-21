@@ -8,6 +8,9 @@ import feign.Response;
 import java.io.File;
 import java.net.URI;
 
+/**
+ * <a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloud/reference-http-api/">...</a>
+ */
 public interface WXCloudAPI {
 
     @RequestLine("POST /tcb/databaseupdate?access_token={access_token}")
@@ -27,7 +30,7 @@ public interface WXCloudAPI {
     @RequestLine("POST /tcb/batchdownloadfile?access_token={access_token}")
     @Headers("Content-Type: application/json")
     CloudFile.CloudFileDownloadResponse batchDownloadFile(
-            CloudFile.CloudFileDownloadResponse request,
+            CloudFile.CloudFileDownloadReq request,
             @Param("access_token") String access_token
     );
 

@@ -14,9 +14,19 @@ import java.util.List;
 public class SDServerlessConfig {
 
     @NestedConfigurationProperty
+    SDText2ImageConfig txt2img;
+    @NestedConfigurationProperty
     SDServerHttpConfig http;
     @NestedConfigurationProperty
     SDServerWSConfig ws;
+
+
+    @Data
+    public static class SDText2ImageConfig {
+        String prompt;
+        String sample;
+        String model;
+    }
 
     @Data
     public static class SDServerWSConfig {
