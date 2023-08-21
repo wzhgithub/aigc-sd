@@ -80,7 +80,7 @@ public class SDText2ImageTask extends AbstractWXAIGCRequest implements SDTask {
             B64Result result = getB64Result();
             if (StringUtils.isBlank(result.b64EncodeStr)) {
                 log.error("b64EncodeStr is null cloudFileDownloadResponse:{}", result.cloudFileDownloadResponse);
-                return;
+                throw new IllegalArgumentException("base64EncodeStr is null");
             }
             SDAny2ImageStruct.SDTxt2ImageResponse sdTxt2ImageResponse = getSdTxt2ImageResponse(result);
             // 保存图片到云文件
@@ -92,7 +92,6 @@ public class SDText2ImageTask extends AbstractWXAIGCRequest implements SDTask {
                 throw new RuntimeException(updateDatabaseResponse.getErrmsg());
             }
         } catch (Exception e) {
-            //todo
             log.error("sdServerlessAPI.text2image error", e);
             try {
                 wxCloudAPI.updateDatabase(newUpdateQuery(TaskStatus.FAILED), wxCloudConfig.getAccessToken());
