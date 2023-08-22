@@ -138,8 +138,8 @@ public class SDText2ImageTask extends AbstractWXAIGCRequest implements SDTask {
     }
 
     private SDAny2ImageStruct.SDTxt2ImageResponse getSdTxt2ImageResponse(B64Result result) {
-        SDAny2ImageStruct.SDTxt2ImageRequest sdTxt2ImageRequest = getSdTxt2ImageRequest(result.b64EncodeStr);
-        SDAny2ImageStruct.SDTxt2ImageResponse sdTxt2ImageResponse = sdServerlessAPI.text2image(sdTxt2ImageRequest);
+        String jsonString = sdServerlessConfig.getTxt2img().newTxt2ImageJsonString(result.b64EncodeStr);
+        SDAny2ImageStruct.SDTxt2ImageResponse sdTxt2ImageResponse = sdServerlessAPI.text2image(jsonString);
         if (CollectionUtils.isEmpty(sdTxt2ImageResponse.getImages())) {
             throw new RuntimeException("sdServerlessAPI.text2image response.images is empty");
         }

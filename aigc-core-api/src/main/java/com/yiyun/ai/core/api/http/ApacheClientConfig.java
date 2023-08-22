@@ -10,6 +10,6 @@ import java.time.Duration;
 public class ApacheClientConfig {
     int maxConnections = 128;
     int maxConnPerRoute = 32;
-    Duration requestTimeout = Duration.ofSeconds(30);
+    Duration requestTimeout = Duration.ofSeconds(300);
 
 }

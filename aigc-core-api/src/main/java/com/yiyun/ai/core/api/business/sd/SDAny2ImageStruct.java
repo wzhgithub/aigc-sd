@@ -26,49 +26,49 @@ public class SDAny2ImageStruct {
             @SerializedName("enable_hr")
             private Boolean enableHr;
             @SerializedName("denoising_strength")
-            private Integer denoisingStrength;
+            private long denoisingStrength;
             @SerializedName("firstphase_width")
-            private Integer firstphaseWidth;
+            private long firstphaseWidth;
             @SerializedName("firstphase_height")
-            private Integer firstphaseHeight;
+            private long firstphaseHeight;
             @SerializedName("hr_scale")
             private Double hrScale;
             @SerializedName("hr_upscaler")
             private Object hrUpscaler;
             @SerializedName("hr_second_pass_steps")
-            private Integer hrSecondPassSteps;
+            private long hrSecondPassSteps;
             @SerializedName("hr_resize_x")
-            private Integer hrResizeX;
+            private long hrResizeX;
             @SerializedName("hr_resize_y")
-            private Integer hrResizeY;
+            private long hrResizeY;
             @SerializedName("prompt")
             private String prompt;
             @SerializedName("styles")
             private Object styles;
             @SerializedName("seed")
-            private Integer seed;
+            private long seed;
             @SerializedName("subseed")
-            private Integer subseed;
+            private long subseed;
             @SerializedName("subseed_strength")
-            private Integer subseedStrength;
+            private long subseedStrength;
             @SerializedName("seed_resize_from_h")
-            private Integer seedResizeFromH;
+            private long seedResizeFromH;
             @SerializedName("seed_resize_from_w")
-            private Integer seedResizeFromW;
+            private long seedResizeFromW;
             @SerializedName("sampler_name")
             private Object samplerName;
             @SerializedName("batch_size")
-            private Integer batchSize;
+            private long batchSize;
             @SerializedName("n_iter")
-            private Integer nIter;
+            private long nIter;
             @SerializedName("steps")
-            private Integer steps;
+            private long steps;
             @SerializedName("cfg_scale")
             private Double cfgScale;
             @SerializedName("width")
-            private Integer width;
+            private long width;
             @SerializedName("height")
-            private Integer height;
+            private long height;
             @SerializedName("restore_faces")
             private Boolean restoreFaces;
             @SerializedName("tiling")
@@ -115,16 +115,45 @@ public class SDAny2ImageStruct {
         }
     }
 
+    /**
+     * base on <a href="https://juejin.cn/post/7265666505101164603">...</a>
+     */
     @NoArgsConstructor
     @Data
     public static class SDTxt2ImageRequest {
 
-        @SerializedName("prompt")
-        private String prompt;
-        @SerializedName("sampler_name")
-        private String samplerName;
         @SerializedName("alwayson_scripts")
         private AlwaysonScriptsDTO alwaysonScripts;
+        @SerializedName("batch_size")
+        private long batchSize;
+        @SerializedName("cfg_scale")
+        private long cfgScale;
+        @SerializedName("height")
+        private long height;
+        @SerializedName("negative_prompt")
+        private String negativePrompt;
+        @SerializedName("override_settings")
+        private OverrideSettingsDTO overrideSettings;
+        @SerializedName("clip_skip")
+        private long clipSkip;
+        @SerializedName("prompt")
+        private String prompt;
+        @SerializedName("restore_faces")
+        private Boolean restoreFaces;
+        @SerializedName("sampler_index")
+        private String samplerIndex;
+        @SerializedName("sampler_name")
+        private String samplerName;
+        @SerializedName("script_args")
+        private List<?> scriptArgs;
+        @SerializedName("seed")
+        private Long seed;
+        @SerializedName("steps")
+        private long steps;
+        @SerializedName("tiling")
+        private Boolean tiling;
+        @SerializedName("width")
+        private long width;
 
         @NoArgsConstructor
         @Data
@@ -141,12 +170,45 @@ public class SDAny2ImageStruct {
                 @NoArgsConstructor
                 @Data
                 public static class ArgsDTO {
+                    @SerializedName("control_mode")
+                    private long controlMode;
+                    @SerializedName("enabled")
+                    private Boolean enabled;
+                    @SerializedName("guidance_end")
+                    private Double guidanceEnd;
+                    @SerializedName("guidance_start")
+                    private Double guidanceStart;
                     @SerializedName("input_image")
                     private String inputImage;
+                    @SerializedName("lowvram")
+                    private Boolean lowvram;
                     @SerializedName("model")
                     private String model;
+                    @SerializedName("module")
+                    private String module;
+                    @SerializedName("pixel_perfect")
+                    private Boolean pixelPerfect;
+                    @SerializedName("processor_res")
+                    private long processorRes;
+                    @SerializedName("resize_mode")
+                    private long resizeMode;
+                    @SerializedName("threshold_a")
+                    private long thresholdA;
+                    @SerializedName("threshold_b")
+                    private long thresholdB;
+                    @SerializedName("weight")
+                    private Double weight;
                 }
             }
+        }
+
+        @NoArgsConstructor
+        @Data
+        public static class OverrideSettingsDTO {
+            @SerializedName("sd_model_checkpoint")
+            private String sdModelCheckpoint;
+            @SerializedName("sd_vae")
+            private String sdVae;
         }
     }
 
@@ -157,57 +219,57 @@ public class SDAny2ImageStruct {
         @SerializedName("init_images")
         private List<String> initImages;
         @SerializedName("resize_mode")
-        private Integer resizeMode;
+        private long resizeMode;
         @SerializedName("denoising_strength")
         private Double denoisingStrength;
         @SerializedName("image_cfg_scale")
-        private Integer imageCfgScale;
+        private long imageCfgScale;
         @SerializedName("mask")
         private String mask;
         @SerializedName("mask_blur")
-        private Integer maskBlur;
+        private long maskBlur;
         @SerializedName("mask_blur_x")
-        private Integer maskBlurX;
+        private long maskBlurX;
         @SerializedName("mask_blur_y")
-        private Integer maskBlurY;
+        private long maskBlurY;
         @SerializedName("inpainting_fill")
-        private Integer inpaintingFill;
+        private long inpaintingFill;
         @SerializedName("inpaint_full_res")
         private Boolean inpaintFullRes;
         @SerializedName("inpaint_full_res_padding")
-        private Integer inpaintFullResPadding;
+        private long inpaintFullResPadding;
         @SerializedName("inpainting_mask_invert")
-        private Integer inpaintingMaskInvert;
+        private long inpaintingMaskInvert;
         @SerializedName("initial_noise_multiplier")
-        private Integer initialNoiseMultiplier;
+        private long initialNoiseMultiplier;
         @SerializedName("prompt")
         private String prompt;
         @SerializedName("styles")
         private List<String> styles;
         @SerializedName("seed")
-        private Integer seed;
+        private long seed;
         @SerializedName("subseed")
-        private Integer subseed;
+        private long subseed;
         @SerializedName("subseed_strength")
-        private Integer subseedStrength;
+        private long subseedStrength;
         @SerializedName("seed_resize_from_h")
-        private Integer seedResizeFromH;
+        private long seedResizeFromH;
         @SerializedName("seed_resize_from_w")
-        private Integer seedResizeFromW;
+        private long seedResizeFromW;
         @SerializedName("sampler_name")
         private String samplerName;
         @SerializedName("batch_size")
-        private Integer batchSize;
+        private long batchSize;
         @SerializedName("n_iter")
-        private Integer nIter;
+        private long nIter;
         @SerializedName("steps")
-        private Integer steps;
+        private long steps;
         @SerializedName("cfg_scale")
-        private Integer cfgScale;
+        private long cfgScale;
         @SerializedName("width")
-        private Integer width;
+        private long width;
         @SerializedName("height")
-        private Integer height;
+        private long height;
         @SerializedName("restore_faces")
         private Boolean restoreFaces;
         @SerializedName("tiling")
@@ -219,17 +281,17 @@ public class SDAny2ImageStruct {
         @SerializedName("negative_prompt")
         private String negativePrompt;
         @SerializedName("eta")
-        private Integer eta;
+        private long eta;
         @SerializedName("s_min_uncond")
-        private Integer sMinUncond;
+        private long sMinUncond;
         @SerializedName("s_churn")
-        private Integer sChurn;
+        private long sChurn;
         @SerializedName("s_tmax")
-        private Integer sTmax;
+        private long sTmax;
         @SerializedName("s_tmin")
-        private Integer sTmin;
+        private long sTmin;
         @SerializedName("s_noise")
-        private Integer sNoise;
+        private long sNoise;
         @SerializedName("override_settings")
         private OverrideSettingsDTO overrideSettings;
         @SerializedName("override_settings_restore_afterwards")

@@ -1,0 +1,41 @@
+<#ftl output_format="JSON">
+{
+  "alwayson_scripts": {
+    "controlnet": {
+      "args": [
+        {
+          "control_mode": 0,
+          "guidance_end": 0.8,
+          "guidance_start": 0.0,
+          "input_image": "${base64SrcImg}",
+          "model": "control_v1p_sd15_qrcode_monster_v1 [a6e58995]",
+          "pixel_perfect": false,
+          "resize_mode": 1,
+          "weight": 1.2
+        },
+        {
+          "control_mode": 0,
+          "guidance_end": 0.78,
+          "guidance_start": 0.47,
+          "input_image": "${base64SrcImg}",
+          "model": "control_v1p_sd15_brightness [5f6aa6ed]",
+          "pixel_perfect": false,
+          "resize_mode": 1,
+          "weight": 0.3
+        }
+      ]
+    }
+  },
+  "batch_size": 1,
+  "cfg_scale": 7,
+  "negative_prompt": "Negative prompt: (worst quality:2),(low quality:2),(bad_prompt_version2:0.8),(EasyNegative:1.2),badhandv4,text,name,letters,watermark,NSFW,(normal quality:2),lowres,monochrome,greyscale,skin spots,acnes,skin blemishes,age spot,(ugly:1.331),(duplicate:1.331),",
+  "clip_skip": 2,
+  "prompt": "masterpiece,best quality,highlydetailed,ultra-detailed,emtremely detailed CG uinty 8k wallpaper,novel illustration,log cabin,snow mountain,trees,snow,snowman,",
+  "restore_faces": false,
+  "sampler_index": "DPM++ 2S a Karras",
+  "seed": 2518109800,
+  "steps": 30,
+  "tiling": false,
+  "width": 512,
+  "height": 512
+}

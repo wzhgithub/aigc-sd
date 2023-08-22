@@ -20,12 +20,11 @@ wx:
           Update: "db.collection(\"${collection}\").where(${condition}).update({data:${data}})"
 sd:
   txt2img:
-    prompt: "xx"
-    sample: "xx"
-    model: "xx"
+    template-name: "txt2img.ftlh"
+    request-template: "/sd/"
   config:
     ws:
       url: "ws://localhost:8888/queue/join"
     http:
-      host: "https://service-b2r1wow5-1304634141.bj.apigw.tencentcs.com/release/"
+      host: "https://service-b2r1wow5-1304634141.bj.apigw.tencentcs.com/"
       clazz: com.yiyun.ai.core.api.business.sd.SDServerlessAPI

@@ -8,9 +8,9 @@ import com.yiyun.ai.core.api.db.DatabaseSQLStringTemplateLoaderConfig;
 import com.yiyun.ai.core.api.http.ApacheClientConfig;
 import com.yiyun.ai.core.api.http.ApacheHttpClient;
 import com.yiyun.ai.core.api.http.CustomGsonDecoder;
+import com.yiyun.ai.core.api.http.CustomGsonEncoder;
 import feign.Feign;
 import feign.Logger;
-import feign.gson.GsonEncoder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +27,7 @@ public class CloudApiAutoConfigure {
         return Feign.builder()
                 .logLevel(Logger.Level.FULL)
                 .decoder(new CustomGsonDecoder())
-                .encoder(new GsonEncoder())
+                .encoder(new CustomGsonEncoder())
                 .client(new ApacheHttpClient(apacheClientConfig));
     }
 
