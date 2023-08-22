@@ -49,6 +49,8 @@ public class StableDiffusionService implements RejectedExecutionHandler {
                 .build();
         this.pool = new ThreadPoolExecutor(8, 128, 1, TimeUnit.MINUTES,
                 new LinkedBlockingQueue<>(512), build, this);
+
+        log.info("sd txt2img config {}", sdServerlessConfig.getTxt2img());
     }
 
     public void generateQRCode(WXQCRGenRequest wxqcrGenRequest) throws Exception {

@@ -22,7 +22,7 @@ import java.util.TimeZone;
 
 @Data
 @ConfigurationProperties("sd.config")
-public class SDServerlessConfig {
+public class SDServerlessConfig implements InitializingBean {
 
     @NestedConfigurationProperty
     SDText2ImageConfig txt2img;
@@ -31,6 +31,10 @@ public class SDServerlessConfig {
     @NestedConfigurationProperty
     SDServerWSConfig ws;
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        txt2img.afterPropertiesSet();
+    }
 
     @Data
     @Slf4j

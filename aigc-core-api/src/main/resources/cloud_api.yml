@@ -19,10 +19,10 @@ wx:
           Query: "db.collection(\"${collection}\").where(${condition}).limit(${limit}).get()"
           Update: "db.collection(\"${collection}\").where(${condition}).update({data:${data}})"
 sd:
-  txt2img:
-    template-name: "txt2img.ftlh"
-    request-template: "/sd/"
   config:
+    txt2img:
+      template-name: "txt2img.ftlh"
+      request-template: "/sd/"
     ws:
       url: "ws://localhost:8888/queue/join"
     http:
