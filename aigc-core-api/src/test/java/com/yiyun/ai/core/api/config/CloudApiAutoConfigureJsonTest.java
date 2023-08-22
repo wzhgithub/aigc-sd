@@ -18,7 +18,7 @@ import java.io.FileOutputStream;
 class CloudApiAutoConfigureJsonTest {
 
     public static void main(String[] args) throws Exception {
-        String base64Encode = ImageUtil.imageBase64Encode("aigc-core-api/src/test/resources/img.png");
+        String base64Encode = ImageUtil.imageBase64Encode("aigc-core-api/src/test/resources/1021692699661_.pic.png");
         SDServerlessConfig.SDServerHttpConfig http = new SDServerlessConfig.SDServerHttpConfig();
         http.setHost("https://service-b2r1wow5-1304634141.bj.apigw.tencentcs.com/");
         http.setClazz(SDServerlessAPI.class);

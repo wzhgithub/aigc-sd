@@ -26,6 +26,9 @@
       ]
     }
   },
+  "override_settings": {
+      "sd_model_checkpoint": "v1-5-pruned-emaonly.safetensors [6ce0161689]"
+  },
   "batch_size": 1,
   "cfg_scale": 7,
   "negative_prompt": "Negative prompt: (worst quality:2),(low quality:2),(bad_prompt_version2:0.8),(EasyNegative:1.2),badhandv4,text,name,letters,watermark,NSFW,(normal quality:2),lowres,monochrome,greyscale,skin spots,acnes,skin blemishes,age spot,(ugly:1.331),(duplicate:1.331),",
@@ -36,6 +39,6 @@
   "seed": 2518109800,
   "steps": 30,
   "tiling": false,
-  "width": 512,
-  "height": 512
+  "width": 768,
+  "height": 768
 }
