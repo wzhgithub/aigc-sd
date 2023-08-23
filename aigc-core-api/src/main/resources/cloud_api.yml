@@ -26,5 +26,5 @@ sd:
     ws:
       url: "ws://localhost:8888/queue/join"
     http:
-      host: "https://service-b2r1wow5-1304634141.bj.apigw.tencentcs.com/"
+      host: "https://service-9oonca4r-1304634141.bj.apigw.tencentcs.com/"
       clazz: com.yiyun.ai.core.api.business.sd.SDServerlessAPI

@@ -37,7 +37,6 @@ public class ImageUtil {
         encodeHintTypeObjectMap.put(EncodeHintType.MARGIN, 1);
         BitMatrix bitMatrix = new MultiFormatWriter()
                 .encode(result.getText(), BarcodeFormat.QR_CODE, width, height, encodeHintTypeObjectMap);
-//        File tempFile = new File("./test.png");
         File tempFile = File.createTempFile("./tmp-qrc", ".png");
         Path path = tempFile.toPath();
         MatrixToImageWriter.writeToPath(bitMatrix, fileFormat, path);// 输出原图片
@@ -71,9 +70,22 @@ public class ImageUtil {
     }
 
     //Method imageBase64Encode
-    public static String imageBase64Encode(String imagePath) throws IOException {
+    public static String imageBase64Encode(String imagePath) throws Exception {
         //Read the file content from the given image path
-        byte[] fileContent = FileUtils.readFileToByteArray(new File(imagePath));
+        File file = new File(imagePath);
+        byte[] fileContent = FileUtils.readFileToByteArray(file);
+        //Encode the file content into a Base64 string
+        return Base64.getEncoder().encodeToString(fileContent);
+    }
+
+    public static String imageQRCBase64Encode(String imagePath) throws Exception {
+        //Read the file content from the given image path
+        File file = new File(imagePath);
+        file = recognizeAndGenerateQRC(file,
+                ServiceConstance.QRCParams.QRC_WIDTH,
+                ServiceConstance.QRCParams.QRC_HEIGHT,
+                ServiceConstance.QRCParams.QRC_TYPE);
+        byte[] fileContent = FileUtils.readFileToByteArray(file);
         //Encode the file content into a Base64 string
         return Base64.getEncoder().encodeToString(fileContent);
     }

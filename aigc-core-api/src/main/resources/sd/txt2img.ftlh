@@ -4,6 +4,7 @@
     "controlnet": {
       "args": [
         {
+          "enabled": true,
           "control_mode": 0,
           "guidance_end": 0.8,
           "guidance_start": 0.0,
@@ -14,6 +15,7 @@
           "weight": 1.2
         },
         {
+          "enabled": true,
           "control_mode": 0,
           "guidance_end": 0.78,
           "guidance_start": 0.47,
@@ -27,7 +29,7 @@
     }
   },
   "override_settings": {
-      "sd_model_checkpoint": "v1-5-pruned-emaonly.safetensors [6ce0161689]"
+      "sd_model_checkpoint": "Counterfeit-V3.ckpt [cbfba64e66]"
   },
   "batch_size": 1,
   "cfg_scale": 7,

@@ -14,13 +14,19 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 
 class CloudApiAutoConfigureJsonTest {
 
     public static void main(String[] args) throws Exception {
-        String base64Encode = ImageUtil.imageBase64Encode("aigc-core-api/src/test/resources/1021692699661_.pic.png");
+        String base64Encode = ImageUtil.imageQRCBase64Encode("aigc-core-api/src/test/resources/img.png");
+//        String base64Encode = ImageUtil.imageBase64Encode("aigc-core-api/src/test/resources/panda.png");
+        try (FileWriter fileWriter = new FileWriter("img64.txt")) {
+            fileWriter.write(base64Encode);
+            fileWriter.flush();
+        }
         SDServerlessConfig.SDServerHttpConfig http = new SDServerlessConfig.SDServerHttpConfig();
-        http.setHost("https://service-b2r1wow5-1304634141.bj.apigw.tencentcs.com/");
+        http.setHost("https://service-9oonca4r-1304634141.bj.apigw.tencentcs.com/");
         http.setClazz(SDServerlessAPI.class);
         SDServerlessAPI target = Feign.builder()
                 .logLevel(Logger.Level.FULL)
