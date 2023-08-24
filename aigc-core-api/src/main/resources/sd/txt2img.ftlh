@@ -12,7 +12,7 @@
           "model": "control_v1p_sd15_qrcode_monster_v1 [a6e58995]",
           "pixel_perfect": false,
           "resize_mode": 1,
-          "weight": 1.2
+          "weight": 1.3
         },
         {
           "enabled": true,
