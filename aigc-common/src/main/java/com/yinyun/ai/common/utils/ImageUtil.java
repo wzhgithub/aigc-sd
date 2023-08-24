@@ -26,6 +26,7 @@ public class ImageUtil {
 
     /**
      * <a href="https://www.cnblogs.com/huanzi-qch/p/10097791.html">...</a>
+     * <a href="https://juejin.cn/post/7063457312907722789">...</a>
      */
     public static File recognizeAndGenerateQRC(File rawFile, int width, int height, String fileFormat)
             throws IOException, NotFoundException, WriterException {
