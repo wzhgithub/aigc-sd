@@ -19,8 +19,8 @@ import java.io.FileWriter;
 class CloudApiAutoConfigureJsonTest {
 
     public static void main(String[] args) throws Exception {
-        String base64Encode = ImageUtil.imageQRCBase64Encode("aigc-core-api/src/test/resources/img.png");
-//        String base64Encode = ImageUtil.imageBase64Encode("aigc-core-api/src/test/resources/panda.png");
+        String base64Encode = ImageUtil.imageQRCBase64Encode("aigc-core-api/src/test/resources/img_wzh.png");
+//        String base64Encode = ImageUtil.imageBase64Encode("aigc-core-api/src/test/resources/test.png");
         try (FileWriter fileWriter = new FileWriter("img64.txt")) {
             fileWriter.write(base64Encode);
             fileWriter.flush();

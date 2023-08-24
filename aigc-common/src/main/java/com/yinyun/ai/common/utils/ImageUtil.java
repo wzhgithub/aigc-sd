@@ -2,9 +2,9 @@ package com.yinyun.ai.common.utils;
 
 import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
-import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.yinyun.ai.common.constance.ServiceConstance;
 import org.apache.commons.io.FileUtils;
@@ -14,13 +14,19 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Path;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
 //Class ImageUtil
 public class ImageUtil {
+
+    private static int BLACK = 0xFF000000;
+    private static int WHITE = 0xFFFFFFFF;
+
+    /**
+     * <a href="https://www.cnblogs.com/huanzi-qch/p/10097791.html">...</a>
+     */
     public static File recognizeAndGenerateQRC(File rawFile, int width, int height, String fileFormat)
             throws IOException, NotFoundException, WriterException {
         Result result = getQRCResult(rawFile);
@@ -32,14 +38,21 @@ public class ImageUtil {
         //内容编码格式
         encodeHintTypeObjectMap.put(EncodeHintType.CHARACTER_SET, "UTF-8");
         // 指定纠错等级
-        encodeHintTypeObjectMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
+        encodeHintTypeObjectMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
         //设置二维码边的空度，非负数
         encodeHintTypeObjectMap.put(EncodeHintType.MARGIN, 1);
-        BitMatrix bitMatrix = new MultiFormatWriter()
+        BitMatrix bitMatrix = new QRCodeWriter()
                 .encode(result.getText(), BarcodeFormat.QR_CODE, width, height, encodeHintTypeObjectMap);
-        File tempFile = File.createTempFile("./tmp-qrc", ".png");
-        Path path = tempFile.toPath();
-        MatrixToImageWriter.writeToPath(bitMatrix, fileFormat, path);// 输出原图片
+        File tempFile = File.createTempFile("tmp-qrc", ".png");
+//        File tempFile = new File("./tmp-qrc.png");
+        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                // 按照上面定义好的二维码颜色编码生成二维码
+                image.setRGB(x, y, bitMatrix.get(x, y) ? BLACK : WHITE);
+            }
+        }
+        ImageIO.write(image, fileFormat, tempFile);
         return tempFile;
     }
 
