@@ -29,7 +29,7 @@
     }
   },
   "override_settings": {
-      "sd_model_checkpoint": "Counterfeit-V3.ckpt [cbfba64e66]"
+      "sd_model_checkpoint": "darkSushiMixMix_225D.safetensors [cca17b08da]"
   },
   "batch_size": 1,
   "cfg_scale": 7,
