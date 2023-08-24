@@ -14,17 +14,16 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 
 class CloudApiAutoConfigureJsonTest {
 
     public static void main(String[] args) throws Exception {
         String base64Encode = ImageUtil.imageQRCBase64Encode("aigc-core-api/src/test/resources/img_wzh.png");
 //        String base64Encode = ImageUtil.imageBase64Encode("aigc-core-api/src/test/resources/test.png");
-        try (FileWriter fileWriter = new FileWriter("img64.txt")) {
-            fileWriter.write(base64Encode);
-            fileWriter.flush();
-        }
+//        try (FileWriter fileWriter = new FileWriter("img64.txt")) {
+//            fileWriter.write(base64Encode);
+//            fileWriter.flush();
+//        }
         SDServerlessConfig.SDServerHttpConfig http = new SDServerlessConfig.SDServerHttpConfig();
         http.setHost("https://service-9oonca4r-1304634141.bj.apigw.tencentcs.com/");
         http.setClazz(SDServerlessAPI.class);
@@ -42,9 +41,8 @@ class CloudApiAutoConfigureJsonTest {
         String s = sdText2ImageConfig.newTxt2ImageJsonString(base64Encode);
         long st = System.currentTimeMillis();
         SDAny2ImageStruct.SDTxt2ImageResponse sdTxt2ImageResponse = target.text2image(s);
-        System.out.println("time:" + (System.currentTimeMillis() - st));
+        System.out.println("time:" + (System.currentTimeMillis() - st) / 1000.0);
         for (int i = 0; i < sdTxt2ImageResponse.getImages().size(); i++) {
-            System.out.println("sss image xxxx" + i);
             String path = String.format("image-%d.png", i);
             File imageFile = new File(path);
             ImageUtil.imageBase64Decode(imageFile, sdTxt2ImageResponse.getImages().get(i));
