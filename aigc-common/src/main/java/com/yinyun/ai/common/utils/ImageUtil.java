@@ -21,8 +21,8 @@ import java.util.Map;
 //Class ImageUtil
 public class ImageUtil {
 
-    private static int BLACK = 0xFF000000;
-    private static int WHITE = 0xFFFFFFFF;
+    private static final int BLACK = 0xFF000000;
+    private static final int WHITE = 0xFFFFFFFF;
 
     /**
      * <a href="https://www.cnblogs.com/huanzi-qch/p/10097791.html">...</a>
