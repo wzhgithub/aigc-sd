@@ -9,7 +9,7 @@ import com.yiyun.ai.core.api.business.wx.WXCloudAPI;
 import com.yiyun.ai.core.api.business.wx.WXCloudConfig;
 import com.yiyun.ai.core.api.db.DataBaseOption;
 import com.yiyun.ai.core.api.db.DatabaseSQLStringTemplateLoaderConfig;
-import com.yiyun.ai.service.wx.WXQCRGenRequest;
+import com.yiyun.ai.service.request.wx.WXQCRGenRequest;
 import freemarker.template.TemplateException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
@@ -53,7 +53,7 @@ public class StableDiffusionService implements RejectedExecutionHandler {
         log.info("sd txt2img config {}", sdServerlessConfig.getTxt2img());
     }
 
-    public void generateQRCode(WXQCRGenRequest wxqcrGenRequest) throws Exception {
+    public void generateQRCode(final WXQCRGenRequest wxqcrGenRequest) throws Exception {
         List<String> data = getData(wxqcrGenRequest);
         if (CollectionUtils.isEmpty(data)) {
             CloudDatabase.QueryOrUpdateDatabaseReq request = wxqcrGenRequest.newUpdateQuery(
@@ -85,13 +85,11 @@ public class StableDiffusionService implements RejectedExecutionHandler {
                 wxCloudAPI.queryDatabase(queryOrUpdateDatabaseReq, wxCloudConfig.getAccessToken());
 
         if (queryDatabaseResponse.getErrcode() != 0) {
-            //todo update task
             log.error("query database error:{}", queryDatabaseResponse.getErrmsg());
             return null;
         }
         List<String> data = queryDatabaseResponse.getData();
         if (CollectionUtils.isEmpty(data)) {
-            //todo update task
             log.error("query database data empty q:{}", queryDatabaseResponse);
             return null;
         }

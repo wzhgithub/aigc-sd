@@ -7,14 +7,11 @@ import com.yinyun.ai.common.utils.ImageUtil;
 import com.yiyun.ai.core.api.business.sd.SDAny2ImageStruct;
 import com.yiyun.ai.core.api.business.sd.SDServerlessAPI;
 import com.yiyun.ai.core.api.business.sd.SDServerlessConfig;
-import com.yiyun.ai.core.api.business.wx.CloudDatabase;
-import com.yiyun.ai.core.api.business.wx.CloudFile;
-import com.yiyun.ai.core.api.business.wx.WXCloudAPI;
-import com.yiyun.ai.core.api.business.wx.WXCloudConfig;
+import com.yiyun.ai.core.api.business.wx.*;
 import com.yiyun.ai.core.api.db.DataBaseOption;
 import com.yiyun.ai.core.api.db.DatabaseSQLStringTemplateLoaderConfig;
-import com.yiyun.ai.service.wx.AbstractWXAIGCRequest;
-import com.yiyun.ai.service.wx.WXQCRGenRequest;
+import com.yiyun.ai.service.request.wx.AbstractWXAIGCRequest;
+import com.yiyun.ai.service.request.wx.WXQCRGenRequest;
 import feign.Response;
 import freemarker.template.TemplateException;
 import lombok.Getter;
@@ -71,10 +68,14 @@ public class SDText2ImageTask extends AbstractWXAIGCRequest implements SDTask {
         }
     }
 
+    /**
+     * 核心执行链路，涉及多次调用 api 接口
+     */
     @Override
     public void run() {
         MDC.setContextMap(copyOfContextMap);
         // 调用云开发API生成图片
+        CloudMessage.MiniProgramRequestMessage requestMessage = null;
         try {
             log.info("start generate text2image task");
             B64Result result = getB64Result();
@@ -91,14 +92,19 @@ public class SDText2ImageTask extends AbstractWXAIGCRequest implements SDTask {
             if (updateDatabaseResponse.getErrcode() != 0) {
                 throw new RuntimeException(updateDatabaseResponse.getErrmsg());
             }
+
+            requestMessage = new CloudMessage.MiniProgramRequestMessage(user.getOpenid(), "二维码生成成功");
         } catch (Exception e) {
             log.error("sdServerlessAPI.text2image error", e);
             try {
                 wxCloudAPI.updateDatabase(newUpdateQuery(TaskStatus.FAILED), wxCloudConfig.getAccessToken());
             } catch (TemplateException | IOException ex) {
-                throw new RuntimeException(ex);
+                log.error("sdServerlessAPI.updateDatabase error", ex);
             }
+            requestMessage = new CloudMessage.MiniProgramRequestMessage(user.getOpenid(), "二维码生成异常,请重试");
         }
+        CloudMessage.MessageResponse messageResponse = wxCloudAPI.sendMessage(requestMessage);
+        log.info("end generate text2image task message response:{}", messageResponse);
     }
 
     private CloudDatabase.QueryOrUpdateDatabaseReq newUpdateQuery(TaskStatus status) throws TemplateException, IOException {

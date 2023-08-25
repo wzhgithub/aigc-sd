@@ -20,6 +20,12 @@ public class CloudMessage {
     @Data
     public static class MiniProgramRequestMessage {
 
+        public MiniProgramRequestMessage(String touser, String title) {
+            this.touser = touser;
+            this.msgtype = "miniprogrampage";
+            this.miniprogrampage = new MiniprogrampageDTO(title);
+        }
+
         @SerializedName("touser")
         private String touser;
         @SerializedName("msgtype")
@@ -30,6 +36,14 @@ public class CloudMessage {
         @NoArgsConstructor
         @Data
         public static class MiniprogrampageDTO {
+
+            public MiniprogrampageDTO(String title) {
+                this.title = title;
+                // todo
+                this.pagepath = "/pages/index/index";
+                this.thumbMediaId = "1234567890"; // 图文消息的封面图片素材id
+            }
+
             @SerializedName("title")
             private String title;
             @SerializedName("pagepath")

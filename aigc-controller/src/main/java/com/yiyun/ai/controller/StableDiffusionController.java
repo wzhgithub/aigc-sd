@@ -1,7 +1,7 @@
 package com.yiyun.ai.controller;
 
+import com.yiyun.ai.service.request.wx.WXQCRGenRequest;
 import com.yiyun.ai.service.sd.StableDiffusionService;
-import com.yiyun.ai.service.wx.WXQCRGenRequest;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

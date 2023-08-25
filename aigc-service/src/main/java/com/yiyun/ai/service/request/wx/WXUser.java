@@ -1,4 +1,4 @@
-package com.yiyun.ai.service.wx;
+package com.yiyun.ai.service.request.wx;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;

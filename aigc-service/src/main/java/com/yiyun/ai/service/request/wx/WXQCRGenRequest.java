@@ -1,4 +1,4 @@
-package com.yiyun.ai.service.wx;
+package com.yiyun.ai.service.request.wx;
 
 import com.google.common.collect.ImmutableMap;
 import com.yiyun.ai.core.api.business.wx.CloudDatabase;
