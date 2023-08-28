@@ -18,7 +18,7 @@ import java.io.FileOutputStream;
 class CloudApiAutoConfigureJsonTest {
 
     public static void main(String[] args) throws Exception {
-        String base64Encode = ImageUtil.imageQRCBase64Encode("aigc-core-api/src/test/resources/img_wzh.png");
+        String base64Encode = ImageUtil.imageQRCBase64Encode("aigc-core-api/src/test/resources/img_zr.png");
 //        String base64Encode = ImageUtil.imageBase64Encode("aigc-core-api/src/test/resources/test.png");
 //        try (FileWriter fileWriter = new FileWriter("img64.txt")) {
 //            fileWriter.write(base64Encode);
@@ -35,10 +35,9 @@ class CloudApiAutoConfigureJsonTest {
                 .target(http.getClazz(), http.getHost());
 
         SDServerlessConfig.SDText2ImageConfig sdText2ImageConfig = new SDServerlessConfig.SDText2ImageConfig();
-        sdText2ImageConfig.setRequestTemplate("/sd/");
-        sdText2ImageConfig.setTemplateName("txt2img.ftlh");
+        sdText2ImageConfig.setRequestTemplate("/sd/txt2img");
         sdText2ImageConfig.afterPropertiesSet();
-        String s = sdText2ImageConfig.newTxt2ImageJsonString(base64Encode);
+        String s = sdText2ImageConfig.newTxt2ImageJsonString(base64Encode, "ramen.ftlh");
         long st = System.currentTimeMillis();
         SDAny2ImageStruct.SDTxt2ImageResponse sdTxt2ImageResponse = target.text2image(s);
         System.out.println("time:" + (System.currentTimeMillis() - st) / 1000.0);

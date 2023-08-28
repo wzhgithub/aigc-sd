@@ -1,5 +1,6 @@
 package com.yiyun.ai.service.sd;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.google.gson.Gson;
 import com.yiyun.ai.core.api.business.sd.SDServerlessAPI;
@@ -9,6 +10,7 @@ import com.yiyun.ai.core.api.business.wx.WXCloudAPI;
 import com.yiyun.ai.core.api.business.wx.WXCloudConfig;
 import com.yiyun.ai.core.api.db.DataBaseOption;
 import com.yiyun.ai.core.api.db.DatabaseSQLStringTemplateLoaderConfig;
+import com.yiyun.ai.service.entity.SDQRCTemplate;
 import com.yiyun.ai.service.request.wx.WXQCRGenRequest;
 import freemarker.template.TemplateException;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +18,9 @@ import org.slf4j.MDC;
 import org.springframework.util.CollectionUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.*;
 
 
@@ -29,6 +33,20 @@ public class StableDiffusionService implements RejectedExecutionHandler {
     private final DatabaseSQLStringTemplateLoaderConfig databaseSQLStringTemplateLoaderConfig;
     private final Gson gson;
     private final SDServerlessConfig sdServerlessConfig;
+
+    private final Map<String, byte[]> imageCache;
+
+    private final List<SDQRCTemplate> templates;
+
+    //todo read from current project
+    public byte[] readImage(String id) throws Exception {
+        return imageCache.get(id);
+    }
+
+    //todo read supported template
+    public List<SDQRCTemplate> templates() {
+        return templates;
+    }
 
     public StableDiffusionService(
             Gson gson,
@@ -51,6 +69,9 @@ public class StableDiffusionService implements RejectedExecutionHandler {
                 new LinkedBlockingQueue<>(512), build, this);
 
         log.info("sd txt2img config {}", sdServerlessConfig.getTxt2img());
+        //todo init templates and image
+        this.templates = new ArrayList<>();
+        this.imageCache = ImmutableMap.of();
     }
 
     public void generateQRCode(final WXQCRGenRequest wxqcrGenRequest) throws Exception {

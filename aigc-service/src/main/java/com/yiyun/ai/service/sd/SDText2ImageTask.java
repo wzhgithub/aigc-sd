@@ -35,13 +35,17 @@ import java.util.Map;
 @ToString(callSuper = true)
 public class SDText2ImageTask extends AbstractWXAIGCRequest implements SDTask {
 
-    @SerializedName("raw_file_id")
     @Setter
+    @SerializedName("raw_file_id")
     String rawFileId;
 
-    @SerializedName("gen_file_id")
     @Setter
+    @SerializedName("gen_file_id")
     String genFileId = "";
+
+    @Setter
+    @SerializedName("template_id")
+    String templateId;
 
     @Setter
     transient private SDServerlessAPI sdServerlessAPI;
@@ -144,7 +148,7 @@ public class SDText2ImageTask extends AbstractWXAIGCRequest implements SDTask {
     }
 
     private SDAny2ImageStruct.SDTxt2ImageResponse getSdTxt2ImageResponse(B64Result result) {
-        String jsonString = sdServerlessConfig.getTxt2img().newTxt2ImageJsonString(result.b64EncodeStr);
+        String jsonString = sdServerlessConfig.getTxt2img().newTxt2ImageJsonString(result.b64EncodeStr, templateId);
         SDAny2ImageStruct.SDTxt2ImageResponse sdTxt2ImageResponse = sdServerlessAPI.text2image(jsonString);
         if (CollectionUtils.isEmpty(sdTxt2ImageResponse.getImages())) {
             throw new RuntimeException("sdServerlessAPI.text2image response.images is empty");

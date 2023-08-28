@@ -21,8 +21,7 @@ wx:
 sd:
   config:
     txt2img:
-      template-name: "txt2img.ftlh"
-      request-template: "/sd/"
+      request-template: "/sd/txt2img"
     ws:
       url: "ws://localhost:8888/queue/join"
     http:

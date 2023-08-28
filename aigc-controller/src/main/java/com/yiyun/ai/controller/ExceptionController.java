@@ -29,9 +29,14 @@ public class ExceptionController {
         String message;
         long responseTs;
         String requestId;
+        Object data;
 
         public CommonResponse(int code, String message) {
-            this(code, message, System.currentTimeMillis(), MDC.get(ServiceConstance.RequestId.name()));
+            this(code, message, null);
+        }
+
+        public CommonResponse(int code, String message, Object data) {
+            this(code, message, System.currentTimeMillis(), MDC.get(ServiceConstance.RequestId.name()), data);
         }
     }
 }

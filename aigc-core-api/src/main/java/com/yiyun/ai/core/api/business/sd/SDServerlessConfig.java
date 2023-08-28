@@ -43,10 +43,9 @@ public class SDServerlessConfig implements InitializingBean {
         String sample;
         String model;
         String requestTemplate;
-        String templateName;
         transient private Configuration cfg = null;
 
-        public String newTxt2ImageJsonString(String imageBase64) {
+        public String newTxt2ImageJsonString(String imageBase64, String templateName) {
             try {
                 Template template = cfg.getTemplate(templateName);
                 StringWriter sw = new StringWriter();
