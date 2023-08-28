@@ -5,10 +5,9 @@ import com.yiyun.ai.service.request.wx.WXQCRGenRequest;
 import com.yiyun.ai.service.sd.StableDiffusionService;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.OutputStream;
 import java.util.List;
 
 import static com.yinyun.ai.common.constance.ServiceConstance.RequestId;
@@ -34,14 +33,13 @@ public class StableDiffusionController {
         return new ExceptionController.CommonResponse(200, "ok", templates);
     }
 
-    @RequestMapping(value = "/template/{id}", method = GET)
-    public void getImage(HttpServletResponse response,
-                         @PathVariable("id") String id) throws Exception {
-        response.setContentType("image/png");
-        try (OutputStream out = response.getOutputStream()) {
-            out.write(stableDiffusionService.readImage(id));
-            out.flush();
-        }
+    @ResponseBody
+    @RequestMapping(
+            value = "/template/{id}",
+            method = GET,
+            produces = MediaType.IMAGE_PNG_VALUE)
+    public byte[] getImage(@PathVariable("id") String id) throws Exception {
+        return stableDiffusionService.readImage(id);
     }
 
 }
