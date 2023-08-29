@@ -12,6 +12,7 @@ import java.util.List;
 
 import static com.yinyun.ai.common.constance.ServiceConstance.RequestId;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 @RequestMapping("/stable-diffusion")
@@ -19,7 +20,7 @@ public class StableDiffusionController {
     @Autowired
     StableDiffusionService stableDiffusionService;
 
-    @RequestMapping("/qrcode")
+    @RequestMapping(value = "/qrcode", method = POST)
     public ExceptionController.CommonResponse generate(@RequestHeader("X-Request-Id") String requestId,
                                                        @RequestBody WXQCRGenRequest request) throws Exception {
         MDC.put(RequestId.name(), requestId);
@@ -33,11 +34,7 @@ public class StableDiffusionController {
         return new ExceptionController.CommonResponse(200, "ok", templates);
     }
 
-    @ResponseBody
-    @RequestMapping(
-            value = "/template/{id}",
-            method = GET,
-            produces = MediaType.IMAGE_PNG_VALUE)
+    @RequestMapping(value = "/template/{id}", method = GET, produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] getImage(@PathVariable("id") String id) throws Exception {
         return stableDiffusionService.readImage(id);
     }
