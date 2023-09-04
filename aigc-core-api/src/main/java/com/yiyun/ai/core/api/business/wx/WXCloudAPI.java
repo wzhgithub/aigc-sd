@@ -45,6 +45,7 @@ public interface WXCloudAPI {
 
     /**
      * <a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloudrun/src/development/weixin/callback.html#%E4%BA%8C%E3%80%81%E4%B8%BB%E5%8A%A8%E5%9B%9E%E5%A4%8D">...</a>
+     *
      * @param request
      * @return
      */
@@ -59,4 +60,15 @@ public interface WXCloudAPI {
                              @Param("Signature") String sign,
                              @Param("x-cos-security-token") String token,
                              @Param("x-cos-meta-fileid") String fileId);
+
+    /**
+     * <a href="https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/user-login/code2Session.html">...</a>
+     */
+    @RequestLine("GET sns/jscode2session?appid={app_id}&secret={secret}&js_code={js_code}&grant_type=authorization_code")
+    LoginResponse login(
+            @Param("app_id") String appId,
+            @Param("secret") String secret,
+            @Param("js_code") String jsCode
+    );
+
 }

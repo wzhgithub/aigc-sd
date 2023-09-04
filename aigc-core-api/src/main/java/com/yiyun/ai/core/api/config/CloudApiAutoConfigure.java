@@ -4,6 +4,7 @@ import com.yiyun.ai.core.api.business.sd.SDServerlessAPI;
 import com.yiyun.ai.core.api.business.sd.SDServerlessConfig;
 import com.yiyun.ai.core.api.business.wx.WXCloudAPI;
 import com.yiyun.ai.core.api.business.wx.WXCloudConfig;
+import com.yiyun.ai.core.api.business.wx.WXLoginConfig;
 import com.yiyun.ai.core.api.db.DatabaseSQLStringTemplateLoaderConfig;
 import com.yiyun.ai.core.api.http.ApacheClientConfig;
 import com.yiyun.ai.core.api.http.ApacheHttpClient;
@@ -19,6 +20,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(value = {
         ApacheClientConfig.class,
         WXCloudConfig.class,
+        WXLoginConfig.class,
         SDServerlessConfig.class,
         DatabaseSQLStringTemplateLoaderConfig.class})
 public class CloudApiAutoConfigure {

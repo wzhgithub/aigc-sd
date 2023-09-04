@@ -5,6 +5,9 @@ http:
       maxConnPerRoute: 16
       requestTimeout: 10s
 wx:
+  login:
+    app-id: "xxx"
+    secret: "xxx"
   cloud:
     file:
       prefix: "wx/sd/path/%s/%s"
