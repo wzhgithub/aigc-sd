@@ -75,7 +75,7 @@ public class StableDiffusionService implements RejectedExecutionHandler {
     }
 
     public void generateQRCode(final WXQCRGenRequest wxqcrGenRequest) throws Exception {
-        List<String> data = getData(wxqcrGenRequest);
+        List<String> data = getQCRTaskData(wxqcrGenRequest);
         if (CollectionUtils.isEmpty(data)) {
             CloudDatabase.QueryOrUpdateDatabaseReq request = wxqcrGenRequest.newUpdateQuery(
                     SDTask.TaskStatus.FAILED,
@@ -98,7 +98,7 @@ public class StableDiffusionService implements RejectedExecutionHandler {
                 }).forEach(pool::submit);
     }
 
-    private List<String> getData(WXQCRGenRequest wxqcrGenRequest) throws TemplateException, IOException {
+    private List<String> getQCRTaskData(WXQCRGenRequest wxqcrGenRequest) throws TemplateException, IOException {
         CloudDatabase.QueryOrUpdateDatabaseReq queryOrUpdateDatabaseReq =
                 databaseSQLStringTemplateLoaderConfig.newCloudDatabaseReq(DataBaseOption.Query,
                         wxCloudConfig.getEnv(), wxqcrGenRequest.dbArgs());
