@@ -20,4 +20,9 @@ public class AppController {
     public LoginResponse login(@RequestParam("js_code") String jsCode) throws Exception {
         return miniProgramService.login(jsCode);
     }
+
+    @RequestMapping(value = "/live", method = GET)
+    public ExceptionController.CommonResponse live() throws Exception {
+        return new ExceptionController.CommonResponse(200, "success");
+    }
 }
