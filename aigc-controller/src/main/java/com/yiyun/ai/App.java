@@ -23,6 +23,7 @@ public class App {
 
     @Bean
     public Docket api() {
+        /* https://www.51cto.com/article/714506.html */
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.yiyun.ai.controller"))
