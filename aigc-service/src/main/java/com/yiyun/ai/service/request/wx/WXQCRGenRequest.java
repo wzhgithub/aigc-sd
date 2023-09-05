@@ -2,8 +2,8 @@ package com.yiyun.ai.service.request.wx;
 
 import com.google.common.collect.ImmutableMap;
 import com.yiyun.ai.core.api.business.wx.CloudDatabase;
-import com.yiyun.ai.core.api.db.DataBaseOption;
-import com.yiyun.ai.core.api.db.DatabaseSQLStringTemplateLoaderConfig;
+import com.yiyun.ai.core.api.db.cloud.DataBaseOption;
+import com.yiyun.ai.core.api.db.cloud.DatabaseSQLStringTemplateLoaderConfig;
 import com.yiyun.ai.service.sd.SDTask;
 import freemarker.template.TemplateException;
 import lombok.Getter;
