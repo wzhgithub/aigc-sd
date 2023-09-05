@@ -8,6 +8,9 @@
 - 在idea打开项目，打开`aigc-controller/src/main/java/com/yiyun/ai/App.java`文件
 - 点击`序号边上的三角run`按钮
 
+## api
+
+- ${hostname}/swagger-ui/index.html
 ## ci
 ```
 bash build.sh
