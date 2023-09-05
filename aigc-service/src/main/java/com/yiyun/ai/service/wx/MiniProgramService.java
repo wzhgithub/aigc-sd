@@ -3,7 +3,9 @@ package com.yiyun.ai.service.wx;
 import com.yiyun.ai.core.api.business.wx.LoginResponse;
 import com.yiyun.ai.core.api.business.wx.WXCloudAPI;
 import com.yiyun.ai.core.api.business.wx.WXLoginConfig;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class MiniProgramService {
     private final WXCloudAPI api;
     private final WXLoginConfig loginConfig;
@@ -11,6 +13,7 @@ public class MiniProgramService {
     public MiniProgramService(WXCloudAPI api, WXLoginConfig loginConfig) {
         this.api = api;
         this.loginConfig = loginConfig;
+        log.debug("login config: {}", this.loginConfig);
     }
 
     public LoginResponse login(String code) {

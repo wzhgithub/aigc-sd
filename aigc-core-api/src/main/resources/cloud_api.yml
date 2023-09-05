@@ -6,13 +6,13 @@ http:
       requestTimeout: 10s
 wx:
   login:
-    app-id: "xxx"
-    secret: "xxx"
+    app-id: "wxf8d82375a90139e3"
+    secret: ${secret:12311}
   cloud:
     file:
       prefix: "wx/sd/path/%s/%s"
     config:
-      env: "sxxx"
+      env: "prod"
       access-token: "xxx"
       host: "https://api.weixin.qq.com"
       clazz: com.yiyun.ai.core.api.business.wx.WXCloudAPI

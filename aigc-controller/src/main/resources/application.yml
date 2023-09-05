@@ -12,10 +12,10 @@ server:
       request-attributes-enabled: true
 spring:
   datasource:
-    url: jdbc:mysql://${MysqlServer}/springboot_demo?useSSL=false&autoReconnect=true&characterEncoding=utf8
+    url: jdbc:mysql://${MYSQL_ADDRESS:127.0.0.1:2202}/${DB_NAME:springboot_demo}?useSSL=false&autoReconnect=true&characterEncoding=utf8
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 1234562
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:123132}
   config:
     import:
       - classpath:cloud_api.yml

@@ -14,6 +14,7 @@ import feign.Feign;
 import feign.Logger;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +29,8 @@ import org.springframework.context.annotation.Configuration;
         SDServerlessConfig.class,
         DatabaseSQLStringTemplateLoaderConfig.class})
 public class CloudApiAutoConfigure {
+    @Value("${spring.datasource.url}")
+    String url;
     @Bean
     public Feign.Builder feignEngine(ApacheClientConfig apacheClientConfig) {
         return Feign.builder()
@@ -46,6 +49,7 @@ public class CloudApiAutoConfigure {
     @Bean
     public SDServerlessAPI newSDServerlessAPI(Feign.Builder feignEngine,
                                               SDServerlessConfig sdServerlessConfig) {
+        log.debug("mysql url: {}", url);
         return sdServerlessConfig.getHttp().newInstance(feignEngine);
     }
 }
