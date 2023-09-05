@@ -5,17 +5,21 @@ import com.yiyun.ai.core.api.business.sd.SDServerlessConfig;
 import com.yiyun.ai.core.api.business.wx.WXCloudAPI;
 import com.yiyun.ai.core.api.business.wx.WXCloudConfig;
 import com.yiyun.ai.core.api.business.wx.WXLoginConfig;
-import com.yiyun.ai.core.api.db.DatabaseSQLStringTemplateLoaderConfig;
+import com.yiyun.ai.core.api.db.cloud.DatabaseSQLStringTemplateLoaderConfig;
 import com.yiyun.ai.core.api.http.ApacheClientConfig;
 import com.yiyun.ai.core.api.http.ApacheHttpClient;
 import com.yiyun.ai.core.api.http.CustomGsonDecoder;
 import com.yiyun.ai.core.api.http.CustomGsonEncoder;
 import feign.Feign;
 import feign.Logger;
+import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+@Slf4j
+@MapperScan("com.yiyun.ai.core.api.db.mysql.mapper")
 @Configuration(proxyBeanMethods = false, value = "feignEngineAutoConfigure")
 @EnableConfigurationProperties(value = {
         ApacheClientConfig.class,

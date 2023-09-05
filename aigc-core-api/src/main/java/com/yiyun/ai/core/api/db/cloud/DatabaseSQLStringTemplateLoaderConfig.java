@@ -1,4 +1,4 @@
-package com.yiyun.ai.core.api.db;
+package com.yiyun.ai.core.api.db.cloud;
 
 import com.yiyun.ai.core.api.business.wx.CloudDatabase;
 import freemarker.cache.StringTemplateLoader;
