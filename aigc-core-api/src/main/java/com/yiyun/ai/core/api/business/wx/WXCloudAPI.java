@@ -13,34 +13,24 @@ import java.net.URI;
  */
 public interface WXCloudAPI {
 
-    @RequestLine("POST /tcb/databaseupdate?access_token={access_token}")
+    @RequestLine("POST /tcb/databaseupdate")
     @Headers("Content-Type: application/json")
-    CloudDatabase.UpdateDatabaseResponse updateDatabase(
-            CloudDatabase.QueryOrUpdateDatabaseReq request,
-            @Param("access_token") String access_token
-    );
+    CloudDatabase.UpdateDatabaseResponse updateDatabase(CloudDatabase.QueryOrUpdateDatabaseReq request);
 
-    @RequestLine("POST /tcb/databasequery?access_token={access_token}")
+    @RequestLine("POST /tcb/databasequery")
     @Headers("Content-Type: application/json")
-    CloudDatabase.QueryDatabaseResponse queryDatabase(
-            CloudDatabase.QueryOrUpdateDatabaseReq request,
-            @Param("access_token") String access_token
-    );
+    CloudDatabase.QueryDatabaseResponse queryDatabase(CloudDatabase.QueryOrUpdateDatabaseReq request);
 
-    @RequestLine("POST /tcb/batchdownloadfile?access_token={access_token}")
+    @RequestLine("POST /tcb/batchdownloadfile")
     @Headers("Content-Type: application/json")
     CloudFile.CloudFileDownloadResponse batchDownloadFile(
-            CloudFile.CloudFileDownloadReq request,
-            @Param("access_token") String access_token
+            CloudFile.CloudFileDownloadReq request
     );
 
 
-    @RequestLine("POST /tcb/uploadfile?access_token={access_token}")
+    @RequestLine("POST /tcb/uploadfile")
     @Headers("Content-Type: application/json")
-    CloudFile.CloudUploadFileResponse uploadFileRequest(
-            CloudFile.CloudUploadFileReq request,
-            @Param("access_token") String access_token
-    );
+    CloudFile.CloudUploadFileResponse uploadFileRequest(CloudFile.CloudUploadFileReq request);
 
 
     /**

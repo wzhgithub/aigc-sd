@@ -81,7 +81,7 @@ public class StableDiffusionService implements RejectedExecutionHandler {
                     SDTask.TaskStatus.FAILED,
                     databaseSQLStringTemplateLoaderConfig,
                     wxCloudConfig.getEnv());
-            CloudDatabase.UpdateDatabaseResponse response = wxCloudAPI.updateDatabase(request, wxCloudConfig.getAccessToken());
+            CloudDatabase.UpdateDatabaseResponse response = wxCloudAPI.updateDatabase(request);
             log.debug("failed update resp:{}", response);
             return;
         }
@@ -103,7 +103,7 @@ public class StableDiffusionService implements RejectedExecutionHandler {
                 databaseSQLStringTemplateLoaderConfig.newCloudDatabaseReq(DataBaseOption.Query,
                         wxCloudConfig.getEnv(), wxqcrGenRequest.dbArgs());
         CloudDatabase.QueryDatabaseResponse queryDatabaseResponse =
-                wxCloudAPI.queryDatabase(queryOrUpdateDatabaseReq, wxCloudConfig.getAccessToken());
+                wxCloudAPI.queryDatabase(queryOrUpdateDatabaseReq);
 
         if (queryDatabaseResponse.getErrcode() != 0) {
             log.error("query database error:{}", queryDatabaseResponse.getErrmsg());

@@ -66,7 +66,7 @@ public class SDText2ImageTask extends AbstractWXAIGCRequest implements SDTask {
     public void updateStatus(TaskStatus status) {
         MDC.setContextMap(copyOfContextMap);
         try {
-            wxCloudAPI.updateDatabase(newUpdateQuery(status), wxCloudConfig.getAccessToken());
+            wxCloudAPI.updateDatabase(newUpdateQuery(status));
         } catch (TemplateException | IOException e) {
             log.error("update status error", e);
         }
@@ -92,7 +92,7 @@ public class SDText2ImageTask extends AbstractWXAIGCRequest implements SDTask {
             genFileId = uploadQRCode2Cos(sdTxt2ImageResponse);
             //update task status
             CloudDatabase.UpdateDatabaseResponse updateDatabaseResponse =
-                    wxCloudAPI.updateDatabase(newUpdateQuery(TaskStatus.SUCCESS), wxCloudConfig.getAccessToken());
+                    wxCloudAPI.updateDatabase(newUpdateQuery(TaskStatus.SUCCESS));
             if (updateDatabaseResponse.getErrcode() != 0) {
                 throw new RuntimeException(updateDatabaseResponse.getErrmsg());
             }
@@ -101,7 +101,7 @@ public class SDText2ImageTask extends AbstractWXAIGCRequest implements SDTask {
         } catch (Exception e) {
             log.error("sdServerlessAPI.text2image error", e);
             try {
-                wxCloudAPI.updateDatabase(newUpdateQuery(TaskStatus.FAILED), wxCloudConfig.getAccessToken());
+                wxCloudAPI.updateDatabase(newUpdateQuery(TaskStatus.FAILED));
             } catch (TemplateException | IOException ex) {
                 log.error("sdServerlessAPI.updateDatabase error", ex);
             }
@@ -128,7 +128,7 @@ public class SDText2ImageTask extends AbstractWXAIGCRequest implements SDTask {
         ImageUtil.imageBase64Decode(tempFile, s);
         String path = getPath(tempFile);
         CloudFile.CloudUploadFileResponse cloudUploadFileResponse =
-                wxCloudAPI.uploadFileRequest(newCloudUploadFileRequest(path), wxCloudConfig.getAccessToken());
+                wxCloudAPI.uploadFileRequest(newCloudUploadFileRequest(path));
         if (cloudUploadFileResponse.getErrcode() != 0) {
             throw new RuntimeException(cloudUploadFileResponse.getErrmsg());
         }
@@ -158,7 +158,7 @@ public class SDText2ImageTask extends AbstractWXAIGCRequest implements SDTask {
 
     private B64Result getB64Result() {
         CloudFile.CloudFileDownloadResponse cloudFileDownloadResponse =
-                wxCloudAPI.batchDownloadFile(newCloudFileDownloadReq(), wxCloudConfig.getAccessToken());
+                wxCloudAPI.batchDownloadFile(newCloudFileDownloadReq());
         String b64EncodeStr = cloudFileDownloadResponse.getFileList().get(0).getB64EncodeStr();
         return new B64Result(cloudFileDownloadResponse, b64EncodeStr);
     }
