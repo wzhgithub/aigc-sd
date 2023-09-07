@@ -5,9 +5,9 @@ import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
 
-public interface SDServerlessAPI {
+import static com.yiyun.ai.core.api.http.FeignHttpMethod.ContentTypes.CONTENT_TYPE_APPLICATION_JSON;
 
-    String CONTENT_TYPE_APPLICATION_JSON = "Content-Type: application/json";
+public interface SDServerlessAPI {
 
     @RequestLine("POST /release/sdapi/v1/img2img")
     @Headers(CONTENT_TYPE_APPLICATION_JSON)

@@ -8,28 +8,30 @@ import feign.Response;
 import java.io.File;
 import java.net.URI;
 
+import static com.yiyun.ai.core.api.http.FeignHttpMethod.ContentTypes.CONTENT_TYPE_APPLICATION_JSON;
+
 /**
  * <a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloud/reference-http-api/">...</a>
  */
 public interface WXCloudAPI {
 
     @RequestLine("POST /tcb/databaseupdate")
-    @Headers("Content-Type: application/json")
+    @Headers(CONTENT_TYPE_APPLICATION_JSON)
     CloudDatabase.UpdateDatabaseResponse updateDatabase(CloudDatabase.QueryOrUpdateDatabaseReq request);
 
     @RequestLine("POST /tcb/databasequery")
-    @Headers("Content-Type: application/json")
+    @Headers(CONTENT_TYPE_APPLICATION_JSON)
     CloudDatabase.QueryDatabaseResponse queryDatabase(CloudDatabase.QueryOrUpdateDatabaseReq request);
 
     @RequestLine("POST /tcb/batchdownloadfile")
-    @Headers("Content-Type: application/json")
+    @Headers(CONTENT_TYPE_APPLICATION_JSON)
     CloudFile.CloudFileDownloadResponse batchDownloadFile(
             CloudFile.CloudFileDownloadReq request
     );
 
 
     @RequestLine("POST /tcb/uploadfile")
-    @Headers("Content-Type: application/json")
+    @Headers(CONTENT_TYPE_APPLICATION_JSON)
     CloudFile.CloudUploadFileResponse uploadFileRequest(CloudFile.CloudUploadFileReq request);
 
 
