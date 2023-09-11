@@ -17,9 +17,6 @@ public class CustomGsonDecoder extends GsonDecoder {
     public Object decode(Response response, Type type) throws IOException {
         log.debug("return type:{}", type);
         String typeName = type.getTypeName();
-        if (StringUtils.equals(typeName, Response.class.getTypeName())) {
-            return response;
-        }
 
         if (StringUtils.equals(String.class.getTypeName(), typeName)) {
             return CharStreams.toString(response.body().asReader(UTF_8));
