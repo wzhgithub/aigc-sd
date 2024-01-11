@@ -6,7 +6,7 @@
         </encoder>
     </appender>
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/data/logs/app.custom</file>
+        <file>/data/logs/app.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>/data/logs/app_custom.%d{yyyy-MM-dd-HH}.gz</fileNamePattern>
             <!--       保留一天    -->
